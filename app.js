@@ -71,7 +71,7 @@ app.get('/speedtest/', function (req, res) {
 app.post('/webhook/', function (req, res) {
     try {
         var data = JSONbig.parse(req.body);
-        console.log(data);
+        console.log(JSON.stringify(data));
         if (data.entry) {
             setTimeout(function () {
             var entries = data.entry;
