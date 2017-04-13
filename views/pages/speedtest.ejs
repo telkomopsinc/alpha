@@ -27,18 +27,15 @@ iframe {
 }(document, 'script', 'Messenger'));
 </script>   
 <script>
-    MessengerExtensions.getUserID(function success(uids) {
+  window.extAsyncInit = function() {
+   console.log("extAsyncInit");
+   MessengerExtensions.getUserID(function success(uids) {
   	// User ID was successfully obtained. 
       	var psid = uids.psid;
-	    console.log(psid);
+	console.log(psid);
     }, function error(err, errorMessage) {      
   	// Error handling code
-    });    
-</script>
-<script>
-  window.extAsyncInit = function() {
-    // the Messenger Extensions JS SDK is done loading 
-	console.log("exiting");
+    });  
   };
 </script>
     <main>
