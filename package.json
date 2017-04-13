@@ -2,9 +2,9 @@
   "name": "webvwtrl",
   "version": "1.0.0",
   "description": "Bot",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Danil Skachkov <danil.skachkov@speaktoit.com> (https://api.ai)",
