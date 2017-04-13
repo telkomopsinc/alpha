@@ -1,0 +1,49 @@
+<!-- views/pages/speedtest.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+<script>
+(function(d, s, id){
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'Messenger'));
+</script>   
+<script>
+    MessengerExtensions.getUserID(function success(uids) {
+  	// User ID was successfully obtained. 
+      	var psid = uids.psid;
+	    console.log(psid);
+    }, function error(err, errorMessage) {      
+  	// Error handling code
+    });    
+</script>
+<script>
+  window.extAsyncInit = function() {
+    // the Messenger Extensions JS SDK is done loading 
+	console.log("exiting");
+  };
+</script>
+    <main>
+        <div class="row">
+            <div class="col-sm-8">
+            
+                <div class="jumbotron">
+                    <h1>This is great</h1>
+                    <p>Welcome to templating using EJS</p>
+                </div>
+                
+            </div>
+            <div class="col-sm-4">
+              <iframe src="https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair"></iframe>
+            </div>
+        </div>
+    </main>   
+</body>
+</html>
