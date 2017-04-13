@@ -78,30 +78,30 @@ app.post('/webhook/', function (req, res) {
             entries.forEach(function (entry) {
                 var messaging_events = entry.messaging;
                 if (messaging_events) {
-                    if (event.sender) {
-                        var SenderID = event.sender.id;
-                    }
-
-                    if (event.recipient) {
-                        var RecipientID = event.recipient.id;
-                    }
-
-                    if (event.message) {
-                        //Customer Query
-                        var logdatetime = getDateTime();
-                        var TimeStamp = event.timestamp;
-                        var MessageID = event.message.mid;
-                        var MessageText = event.message.text;
-                        if (event.message && !event.message.is_echo ||
-                            event.postback && event.postback.payload ||
-                            event.account_linking) {
-                            if (event.message.tolower() == "get started")
-                            {
-                                var respobj = { "facebook": { "attachment": { "type": "template", "payload": { "template_type": "generic", "elements": [{ "title": "Welcome to Verizon", "image_url": "https://www98.verizon.com/vzssobot/content/verizon-logo-200.png", "subtitle": "Entertainment", "default_action": { "type": "web_url", "url": "https://webvwtrl.herokuapp.com/speedtest", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair" }, "buttons": [{ "type": "web_url", "url": "https://www.verizon.com/", "title": "View Website" }, { "type": "postback", "title": "Start Chatting", "payload": "Start Conversation" }] }] } } } };
-                                sendFBMessage(SenderID, respobj.facebook, null);
+                    messaging_events.forEach(function (event) {
+                        var SenderID;
+                        var RecipientID;
+                        if (event  && event.sender) {
+                            SenderID = event.sender.id;
+                        }
+                        if (event  && event.recipient) {
+                            RecipientID = event.recipient.id;
+                        }
+                        if (event.message) {
+                            //Customer Query
+                            var TimeStamp = event.timestamp;
+                            var MessageID = event.message.mid;
+                            var MessageText = event.message.text;
+                            if (event.message && !event.message.is_echo ||
+                                event.postback && event.postback.payload ||
+                                event.account_linking) {
+                                if (MessageText == "get started") {
+                                    var respobj = { "facebook": { "attachment": { "type": "template", "payload": { "template_type": "generic", "elements": [{ "title": "Welcome to Verizon", "image_url": "https://www98.verizon.com/vzssobot/content/verizon-logo-200.png", "subtitle": "Entertainment", "default_action": { "type": "web_url", "url": "https://webvwtrl.herokuapp.com/speedtest", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair" }, "buttons": [{ "type": "web_url", "url": "https://www.verizon.com/", "title": "View Website" }, { "type": "postback", "title": "Start Chatting", "payload": "Start Conversation" }] }] } } } };
+                                    sendFBMessage(SenderID, respobj.facebook, null);
+                                }
                             }
                         }
-                    }
+                    });
                 }
             })
           }, 250);
