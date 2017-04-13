@@ -1,35 +1,18 @@
 'use strict';
 
-//var apiai = require('./core/extlib/apiai/index.js');
 var express = require('express');
 var bodyParser = require('body-parser');
-//var uuid = require('node-uuid');
 var request = require('request');
 var JSONbig = require('json-bigint');
 var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
 var util = require('util');
-//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
-
-// we want to create
-
-
-
 //const vz_proxy = config.vz_proxy;
 var REST_PORT = (process.env.PORT || process.env.port || process.env.OPENSHIFT_NODEJS_PORT || 8080);
-//var SEVER_IP_ADDR = process.env.OPENSHIFT_NODEJS_IP || process.env.HEROKU_IP || '127.0.0.1';
-//var APIAI_ACCESS_TOKEN = config.APIAIACCESSTOKEN;
-//var APIAI_LANG = 'en';
 var FB_VERIFY_TOKEN = "CAA30DE7-CC67-4CBA-AF93-2B1C5C4C19D4";
 var FB_PAGE_ACCESS_TOKEN = "EAAU6CRuhSXkBABZAO2nGyJRHQgA6mOVgWSY3ACispPG3CCzJtLsNmzBH2GpjUvX8OGZBuscxjzKjD1DEGVfJhQUGxhZC3kFbgASjez7Ld10BgqefftTARaG6neLnjdTOm9sCuF2CTdDSrCMTt8BkD1SK0fN3sa0vDYlYL6K1gZDZD";
-//var APIAI_VERIFY_TOKEN = "verify123";
-//var apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb", proxy: config.vz_proxy, secure: true });
 var sessionIds = new Map();
-
-
-
 
 log4js.configure({
     appenders:
@@ -85,8 +68,6 @@ app.get('/speedtest/', function (req, res) {
         res.render('pages/about');
 });
 
-
-
 app.post('/webhook/', function (req, res) {
     try {
         var data = JSONbig.parse(req.body);
@@ -114,7 +95,11 @@ app.post('/webhook/', function (req, res) {
                         if (event.message && !event.message.is_echo ||
                             event.postback && event.postback.payload ||
                             event.account_linking) {
-
+                            if (event.message.tolower() == "get started")
+                            {
+                                var respobj = { "facebook": { "attachment": { "type": "template", "payload": { "template_type": "generic", "elements": [{ "title": "Welcome to Verizon", "image_url": "https://www98.verizon.com/vzssobot/content/verizon-logo-200.png", "subtitle": "Entertainment", "default_action": { "type": "web_url", "url": "https://webvwtrl.herokuapp.com/speedtest", "messenger_extensions": true, "webview_height_ratio": "tall", "fallback_url": "https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair" }, "buttons": [{ "type": "web_url", "url": "https://www.verizon.com/", "title": "View Website" }, { "type": "postback", "title": "Start Chatting", "payload": "Start Conversation" }] }] } } } };
+                                sendFBMessage(SenderID, respobj.facebook, null);
+                            }
                         }
                     }
                 }
