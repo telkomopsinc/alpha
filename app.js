@@ -65,7 +65,7 @@ app.get('/webhook/', function (req, res) {
 });
 
 app.get('/speedtest/', function (req, res) {
-        res.render('pages/about');
+        res.render('pages/speedtest');
 });
 
 app.post('/webhook/', function (req, res) {
