@@ -35,20 +35,20 @@ iframe {
    MessengerExtensions.getUserID(function success(uids) {
   	// User ID was successfully obtained. 
       	var psid = uids.psid;
-	console.log(psid);
+		console.log("PSID" + psid);
     }, function error(err, errorMessage) {      
   	// Error handling code
     });  
   };
   $(document).ready(function() {
    $( "#closeButton" ).click(function() {
-   document.location.href= "https://www.messenger.com/closeWindow/?image_url=&display_text=Closing Speed Test";
+   document.location.href= "https://www.messenger.com/closeWindow/?image_url=https%3A%2F%2Fwww98.verizon.com%2Fvzssobot%2Fcontent%2Fverizon-logo-200.png&display_text=Closing Speed Test";
   });
 });
   
 </script>
     <main>
-         <button id="closeButton" class="close-button">Close</button>
+         <button id="closeButton" class="close-button" onClick="document.location.href=https://www.messenger.com/closeWindow/?image_url=https%3A%2F%2Fwww98.verizon.com%2Fvzssobot%2Fcontent%2Fverizon-logo-200.png&display_text=Closing Speed Test">Close</button>
          <iframe src="https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair"></iframe>
         
     </main>   
