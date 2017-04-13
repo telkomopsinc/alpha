@@ -10,11 +10,27 @@ var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
 var util = require('util');
+//var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+
+
+// we want to create
+
+
+
+//const vz_proxy = config.vz_proxy;
 var REST_PORT = (process.env.PORT || process.env.port || process.env.OPENSHIFT_NODEJS_PORT || 8080);
-var SEVER_IP_ADDR = process.env.OPENSHIFT_NODEJS_IP || process.env.HEROKU_IP || '127.0.0.1';
+//var SEVER_IP_ADDR = process.env.OPENSHIFT_NODEJS_IP || process.env.HEROKU_IP || '127.0.0.1';
+//var APIAI_ACCESS_TOKEN = config.APIAIACCESSTOKEN;
+//var APIAI_LANG = 'en';
 var FB_VERIFY_TOKEN = "CAA30DE7-CC67-4CBA-AF93-2B1C5C4C19D4";
 var FB_PAGE_ACCESS_TOKEN = "EAAU6CRuhSXkBABZAO2nGyJRHQgA6mOVgWSY3ACispPG3CCzJtLsNmzBH2GpjUvX8OGZBuscxjzKjD1DEGVfJhQUGxhZC3kFbgASjez7Ld10BgqefftTARaG6neLnjdTOm9sCuF2CTdDSrCMTt8BkD1SK0fN3sa0vDYlYL6K1gZDZD";
+//var APIAI_VERIFY_TOKEN = "verify123";
+//var apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb", proxy: config.vz_proxy, secure: true });
 var sessionIds = new Map();
+
+
+
+
 log4js.configure({
     appenders:
     [
@@ -43,11 +59,12 @@ log4js.configure({
 
 var logger = log4js.getLogger("ws");
 var ChatHistoryLog = log4js.getLogger('Historylog');
+
 var app = express();
 app.use(bodyParser.text({ type: 'application/json' }));
 app.set('view engine', 'ejs');
 
-app.listen(REST_PORT, SEVER_IP_ADDR, function () {
+app.listen(REST_PORT,  function () {
     logger.debug('Rest service ready on port ' + REST_PORT);
 });
 
@@ -67,6 +84,8 @@ app.get('/webhook/', function (req, res) {
 app.get('/speedtest/', function (req, res) {
         res.render('pages/about');
 });
+
+
 
 app.post('/webhook/', function (req, res) {
     try {
