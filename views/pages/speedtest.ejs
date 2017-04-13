@@ -45,10 +45,20 @@ iframe {
    document.location.href= "https://www.messenger.com/closeWindow/?image_url=https%3A%2F%2Fwww98.verizon.com%2Fvzssobot%2Fcontent%2Fverizon-logo-200.png&display_text=Closing Speed Test";
   });
 });
+
+function quitBox(cmd)
+{   
+    if (cmd=='quit')
+    {
+        open(location, '_self').close();
+    }   
+    return false;   
+}
   
 </script>
     <main>
-         <button id="closeButton" class="close-button" onClick="document.location.href=https://www.messenger.com/closeWindow/?image_url=https%3A%2F%2Fwww98.verizon.com%2Fvzssobot%2Fcontent%2Fverizon-logo-200.png&display_text=Closing Speed Test">Close</button>
+		 <input type=button id=closeButton name=closeButton value="Close" onClick="return quitBox('quit');"/>
+		<button id="closeButton2" class="close-button2" onClick="document.location.href=https://www.messenger.com/closeWindow/?image_url=https%3A%2F%2Fwww98.verizon.com%2Fvzssobot%2Fcontent%2Fverizon-logo-200.png&display_text=Closing Speed Test">Close</button>
          <iframe src="https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair"></iframe>
         
     </main>   
