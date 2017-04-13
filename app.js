@@ -71,7 +71,7 @@ app.get('/speedtest/', function (req, res) {
 app.post('/webhook/', function (req, res) {
     try {
         var data = JSONbig.parse(req.body);
-        
+        console.log(data);
         if (data.entry) {
             setTimeout(function () {
             var entries = data.entry;
@@ -116,10 +116,7 @@ app.post('/webhook/', function (req, res) {
         });
     }
 });
-
-
 doSubscribeRequest();
-
 function sendFBMessage(sender, messageData, userCoversationArr) {
     request({
         url: 'https://graph.facebook.com/v2.8/me/messages',
