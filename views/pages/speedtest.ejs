@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+ <link href="https://respframework.verizon.com/vzrf/2-20-0/stylesheets/complete/vzrf.css" rel="stylesheet" />
+ <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <style>
 body {
     margin: 0;            /* Reset default margin */
@@ -37,10 +39,14 @@ iframe {
   	// Error handling code
     });  
   };
+  $( "#target" ).click(function() {
+   document.location.href= "https://www.messenger.com/closeWindow/?image_url=&display_text=Closing Speed Test";
+  });
 </script>
     <main>
+         <button id="closeButton" class="close-button">Close</button>
          <iframe src="https://www98.verizon.com/SpeedTest/learnspeedtest.aspx#repair"></iframe>
-       
+        
     </main>   
 </body>
 </html>
