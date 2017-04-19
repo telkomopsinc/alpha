@@ -137,6 +137,9 @@ function sendFBMessage(sender, messageData, userCoversationArr) {
 }
 
 function doSubscribeRequest() {
+    
+    console.log (JSON.stringify({recipient: { id: sender },message: messageData}));
+    
     request({
         method: 'POST',
         uri: "https://graph.facebook.com/v2.8/me/subscribed_apps?access_token=" + FB_PAGE_ACCESS_TOKEN,
