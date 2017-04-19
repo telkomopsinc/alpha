@@ -138,7 +138,6 @@ function sendFBMessage(sender, messageData, userCoversationArr) {
 
 function doSubscribeRequest() {
     
-    console.log ( messageData);
     
     request({
         method: 'POST',
