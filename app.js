@@ -138,7 +138,7 @@ function sendFBMessage(sender, messageData, userCoversationArr) {
 
 function doSubscribeRequest() {
     
-    console.log (JSON.stringify({recipient: { id: sender },message: messageData}));
+    console.log ( messageData);
     
     request({
         method: 'POST',
