@@ -70,7 +70,7 @@ app.get('/speedtest/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
     try {
-        console.log(req.headers);
+        console.log(JSON.stringify(req.headers));
         var data = JSONbig.parse(req.body);
         console.log(JSON.stringify(data));
         if (data.entry) {
